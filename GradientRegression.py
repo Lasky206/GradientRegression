@@ -5,8 +5,8 @@ import os
 import sys
 
 
-fig = plt.figure()
-ax = plt.axes(projection='3d')
+# fig = plt.figure()
+# ax = plt.axes(projection='3d')
 
 
 # # Data for a three-dimensional line
@@ -73,8 +73,10 @@ def gradient_descent_runner(points, starting_b, starting_m, learning_rate, num_i
         #this gradient step
         b, m = step_gradient(b, m, array(points), learning_rate)
 
-        plt.scatter(0,1)
+
+        plt.scatter(b, m)
     plt.show()
+
 
     return [b, m]
 
@@ -92,7 +94,7 @@ def run():
     num_iterations = 1000
 
     #Step 3 - train our model
-    print ('starting gradient descent at b = {0}, m = {1}, error = {2}'.format(initial_b, initial_m, compute_error_for_line_given_points(initial_b, initial_m, points)))
+    print('starting gradient descent at b = {0}, m = {1}, error = {2}'.format(initial_b, initial_m, compute_error_for_line_given_points(initial_b, initial_m, points)))
     [b, m] = gradient_descent_runner(points, initial_b, initial_m, learning_rate, num_iterations)
     print('After {0} iterations b = {1}, m = {2}, error = {3}'.format(num_iterations, b, m, compute_error_for_line_given_points(b, m, points)))
 
