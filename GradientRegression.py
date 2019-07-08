@@ -1,6 +1,29 @@
 from numpy import *
+import matplotlib.pyplot as plt
+from mpl_toolkits import mplot3d
 import os
 import sys
+
+
+fig = plt.figure()
+ax = plt.axes(projection='3d')
+
+
+# # Data for a three-dimensional line
+# zline = linspace(0, 15, 1000)
+# xline = sin(zline)
+# yline = cos(zline)
+# ax.plot3D(xline, yline, zline, 'gray')
+
+# Data for three-dimensional scattered points
+# zdata = 15 * random.random(100)
+# xdata = sin(zdata) + 0.1 * random.randn(100)
+# ydata = cos(zdata) + 0.1 * random.randn(100)
+# ax.scatter3D(xdata, ydata, zdata, c=zdata, cmap='Greens')
+#
+# plt.show()
+#
+# sys.exit()
 
 def compute_error_for_line_given_points(b, m, points):
     #initialize it at 0
@@ -8,11 +31,18 @@ def compute_error_for_line_given_points(b, m, points):
     #for every point
     for i in range(0, len(points)):
         #get the x value
-        x = points [i, 0]
+        x = points[i, 0]
         #get the y value
-        y = points [i, 1]
+        y = points[i, 1]
         #get the difference, square it , add it to the total
         totalError += (y - (m * x + b)) ** 2
+
+        zdata = int(totalError)
+        xdata = points[i, 0]
+        ydata = points[i, 1]
+        ax.scatter3D(xdata, ydata, zdata)
+
+    plt.show()
 
     return totalError / float(len(points))
 
@@ -46,7 +76,7 @@ def gradient_descent_runner(points, starting_b, starting_m, learning_rate, num_i
     #gradient descent
     for i in range(num_iterations):
         #update b and m with the new more accurate b and m by performing
-        #this gradient Step
+        #this gradient step
         b, m = step_gradient(b, m, array(points), learning_rate)
         return [b, m]
 
@@ -71,3 +101,17 @@ def run():
 
 if __name__ == '__main__':
     run()
+
+
+
+
+# points = genfromtxt('data.csv', delimiter=',')
+# points2 = points.tolist()
+# print(points2)
+
+
+# for i in range(0, len(points2)):
+#     # plt.scatter(points[i, 0], points[i, 1])
+#     Axes3D.scatter(points[i, 0], points[i, 1], 12)
+# # plt.axis([0,100,0,100])
+# plt.show()
