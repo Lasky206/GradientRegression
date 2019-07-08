@@ -37,12 +37,6 @@ def compute_error_for_line_given_points(b, m, points):
         #get the difference, square it , add it to the total
         totalError += (y - (m * x + b)) ** 2
 
-        zdata = int(totalError)
-        xdata = points[i, 0]
-        ydata = points[i, 1]
-        ax.scatter3D(xdata, ydata, zdata)
-
-    plt.show()
 
     return totalError / float(len(points))
 
@@ -78,7 +72,11 @@ def gradient_descent_runner(points, starting_b, starting_m, learning_rate, num_i
         #update b and m with the new more accurate b and m by performing
         #this gradient step
         b, m = step_gradient(b, m, array(points), learning_rate)
-        return [b, m]
+
+        plt.scatter(0,1)
+    plt.show()
+
+    return [b, m]
 
 def run():
 
@@ -112,6 +110,6 @@ if __name__ == '__main__':
 
 # for i in range(0, len(points2)):
 #     # plt.scatter(points[i, 0], points[i, 1])
-#     Axes3D.scatter(points[i, 0], points[i, 1], 12)
+#     Axes3D.scatter(points[i, 0], points[i, 1], 12)000000000
 # # plt.axis([0,100,0,100])
 # plt.show()
